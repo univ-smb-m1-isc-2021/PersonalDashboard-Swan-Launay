@@ -41,3 +41,12 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t personaldashboard .
+
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: univ-smb-m1-isc-2021/PersonalDashboard-Swan-Launay/main
+          tags: latest
