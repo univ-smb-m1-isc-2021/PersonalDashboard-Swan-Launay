@@ -40,4 +40,4 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=univ-smb-m1-isc-2021_PersonalDashboard-Swan-Launay
 
       - name: Build Docker Image
-        run: docker build -t personaldashboard
+        run: docker build -t personaldashboard .
