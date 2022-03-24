@@ -13,10 +13,4 @@ public class PersonalDashboardApplication {
     public static void main(String[] args) {
         SpringApplication.run(PersonalDashboardApplication.class, args);
     }
-
-    @GetMapping("/hello")
-    public String sayHello(@RequestParam(value = "myName", defaultValue = "Swan") String name){
-        return String.format("Hello %s", name);
-    }
-
 }
