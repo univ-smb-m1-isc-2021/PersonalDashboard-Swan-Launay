@@ -1,0 +1,6 @@
+.dashboard_container{
+    flex: 1;
+    padding-right: 5%;
+    padding-left: 5%;
+    background-color: #2d2d2d;
+}

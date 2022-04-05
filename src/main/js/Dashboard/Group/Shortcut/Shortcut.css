@@ -1,0 +1,54 @@
+.shortcut_container{
+    width: 13rem;
+    margin-right: 15px;
+    display: inline-flex !important;
+    border: none !important;
+    background-color: #e3e3e3 !important;
+}
+
+.shortcut_container:last-child{
+    margin-right: 0;
+}
+
+
+.shortcut_letter_container{
+    position: relative;
+}
+
+.shortcut_letter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    border-radius: 10px;
+    background-color: rgb(75,75,75);
+    color: white;
+    text-transform: uppercase;
+    padding: .75rem 1rem;
+    transform: translateY(-100%);
+    top : 0.7rem;
+    left: 0.5rem;
+}
+
+.shortcut_button{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #1c1f23;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: calc(.25rem - 1px);
+    border-bottom-right-radius: calc(.25rem - 1px);
+    color: white;
+}
+
+.shortcut_button:hover{
+    background-color: #24282c;
+}
+
+
+
+
+

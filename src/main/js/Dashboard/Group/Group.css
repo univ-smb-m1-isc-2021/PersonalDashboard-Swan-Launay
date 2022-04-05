@@ -1,0 +1,31 @@
+.group_container{
+    display: inline-block;
+    max-width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.group_items{
+    width: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+.group_header{
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: rgba(28,31,35,0.8);
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+
+.group_title{
+    font-size: 1.2rem;
+    margin-right: 10px;
+    margin-left: 10px;
+}
