@@ -6,14 +6,16 @@
 }
 
 body {
-    background: #f6f5f7;
+    background-image: url('/assets/login-back.jpg');
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
     height: 100vh;
-    margin: -20px 0 50px;
+    margin: 0;
 }
 
 h1 {
@@ -46,8 +48,8 @@ a {
 
 button {
     border-radius: 20px;
-    border: 1px solid #FF4B2B;
-    background-color: #FF4B2B;
+    border: 1px solid #32506E;
+    background-color: #32506E;
     color: #FFFFFF;
     font-size: 12px;
     font-weight: bold;
@@ -160,9 +162,7 @@ input {
 }
 
 .overlay {
-    background: #FF416C;
-    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-    background: linear-gradient(to right, #FF4B2B, #FF416C);
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
@@ -224,4 +224,61 @@ input {
     margin: 0 5px;
     height: 40px;
     width: 40px;
+}
+
+.alert-container {
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    background-color: white;
+    box-shadow: 0 0 7px rgba(0,0,0,0.25);
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+
+}
+
+.fab{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.github-icon{
+    background-image: url('/assets/github-icon.png');
+}
+
+.google-icon{
+    background-image: url('/assets/google-icon.png');
+}
+
+.hide {
+    -moz-animation: cssAnimation 0s ease-in 10s forwards;
+    -webkit-animation: cssAnimation 0s ease-in 10s forwards;
+    -o-animation: cssAnimation 0s ease-in 10s forwards;
+    animation: cssAnimation 0s ease-in 10s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        opacity:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        opacity:0;
+        visibility:hidden;
+    }
 }

@@ -1,17 +1,18 @@
 package me.nakashita.personal_dashboard.api.repository;
 
 import me.nakashita.personal_dashboard.api.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import me.nakashita.personal_dashboard.security.AuthenticationType;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
-import java.util.Optional;
+public interface UserRepository extends CrudRepository<User, Long> {
 
-//@Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+    @Query("SELECT u FROM User u WHERE u.username = :username")
+    public User getUserByUsername(@Param("username") String username);
 
-    @Query(" select u from User u " +
-            " where u.username = ?1")
-    Optional<User> findUserWithName(String username);
-
+    @Modifying
+    @Query("UPDATE User u SET u.authType = ?2 WHERE u.username = ?1")
+    public void updateAuthenticationType(String username, AuthenticationType authType);
 }

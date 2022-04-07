@@ -1,44 +1,47 @@
 package me.nakashita.personal_dashboard.api.model;
 
+import me.nakashita.personal_dashboard.security.AuthenticationType;
 
-import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
-@Data
 @Entity
 @Table(name = "users")
-public class User implements Serializable, UserDetails {
+public class User {
+
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     private String username;
 
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    private List<Group> groups;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "auth_type")
+    private AuthenticationType authType;
 
-    public List<Group> getGroups() {
-        return groups;
+    public Long getId() {
+        return id;
     }
 
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -57,29 +60,12 @@ public class User implements Serializable, UserDetails {
         this.password = password;
     }
 
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public AuthenticationType getAuthType() {
+        return authType;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
+    public void setAuthType(AuthenticationType authType) {
+        this.authType = authType;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 }

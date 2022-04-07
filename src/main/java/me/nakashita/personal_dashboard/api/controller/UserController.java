@@ -6,12 +6,14 @@ import me.nakashita.personal_dashboard.api.exception.UserNotFoundException;
 import me.nakashita.personal_dashboard.api.exception.UsernameAlreadyTakenException;
 import me.nakashita.personal_dashboard.api.model.User;
 import me.nakashita.personal_dashboard.api.service.UserService;
+import me.nakashita.personal_dashboard.security.AuthenticationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -25,13 +27,20 @@ public class UserController extends ResponseEntityExceptionHandler {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/register/{username}/{password}")
-    public User register(@PathVariable String username, @PathVariable String password) {
-        if(!userService.isExistUser(username)) {
-            return userService.saveUser(username, password);
+    @GetMapping("/register/{email}/{password}")
+    public User register(@PathVariable String email, @PathVariable String password) {
+        if(!userService.isExist(email)) {
+            User user = new User();
+            user.setUsername(email);
+            user.setPassword(new BCryptPasswordEncoder().encode(password));
+            user.setAuthType(AuthenticationType.DATABASE);
+            userService.saveUser(user);
+            return user;
         }
         return null;
     }
+
+
 
     /*
     @GetMapping("/api/get-user/{id}")
