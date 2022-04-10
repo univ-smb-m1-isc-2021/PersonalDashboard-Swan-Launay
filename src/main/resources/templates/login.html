@@ -3,18 +3,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Login - Personal Dashboard</title>
-	<link rel="stylesheet" href="/css/login.css" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
 </head>
 <body>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="/register">
+		<form action="/register" method="post">
 			<h1>Create Account</h1>
 			<div class="social-container">
 				<a th:href="@{/oauth2/authorization/github}" class="social fab github-icon"></a>
 				<a th:href="@{/oauth2/authorization/google}" class="social fab google-icon"></a>
 			</div>
 			<span>or use your email for registration</span>
+			<input name="name" required type="text" placeholder="Username" />
 			<input name="email" required type="email" placeholder="Email" />
 			<input name="pass" required type="password" placeholder="Password" />
 			<button>Sign Up</button>

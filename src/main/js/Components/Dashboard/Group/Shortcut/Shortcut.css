@@ -10,6 +10,39 @@
     margin-right: 0;
 }
 
+.shortcut_remove_container{
+    position: relative;
+}
+
+.shortcut_remove_button{
+    background-image: url('/assets/delete.png');
+    right: 0;
+}
+
+.shortcut_edit_button{
+    background-image: url('/assets/edit.png');
+    right: 30px;
+    border-bottom-left-radius: 15px;
+
+}
+
+.shortcut_action{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    color: white;
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    background-color: rgba(0,0,0);
+    border: none;
+}
+
+.shortcut_action:hover{
+    opacity: 1;
+}
+
 
 .shortcut_letter_container{
     position: relative;
@@ -24,10 +57,21 @@
     background-color: rgb(75,75,75);
     color: white;
     text-transform: uppercase;
-    padding: .75rem 1rem;
+    padding: .50rem 0.7rem;
     transform: translateY(-100%);
     top : 0.7rem;
     left: 0.5rem;
+    border-bottom: 3px solid rgb(50,50,50);
+    border-left: 3px solid rgb(50,50,50);
+
+}
+
+.shortcut_img{
+    object-fit: cover;
+    height: 125px;
+    background-image: url('/assets/placeholder.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .shortcut_button{

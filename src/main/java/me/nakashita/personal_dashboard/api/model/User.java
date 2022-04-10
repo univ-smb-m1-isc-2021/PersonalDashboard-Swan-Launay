@@ -1,23 +1,12 @@
 package me.nakashita.personal_dashboard.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import me.nakashita.personal_dashboard.security.AuthenticationType;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -32,9 +21,85 @@ public class User {
 
     private String password;
 
+    private String name;
+
+    @OneToMany
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@Id")
+    private List<Group> groups;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "auth_type")
     private AuthenticationType authType;
+
+    public User() {}
+
+    public User(String username, String password, String name, AuthenticationType authType) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.authType = authType;
+    }
+
+    public User(String username, String password, String name) {
+        this(username, password, name, AuthenticationType.DATABASE);
+    }
+
+    public Map<String, Object> toJSON(){
+        Map<String, Object> res = new HashMap<>();
+        res.put("userId", this.id);
+        res.put("name", this.name);
+        res.put("username", this.username);
+        res.put("authType", this.authType);
+        ArrayList<Map<String, Object>> groupsLIST = new ArrayList<>();
+        for(Group g : this.groups){
+            groupsLIST.add(g.toJSON());
+        }
+        res.put("groups", groupsLIST);
+        return res;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", groups=" + groups +
+                ", authType=" + authType +
+                '}';
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+
+    public void addGroup(Group group){
+        if(this.groups == null){
+            this.groups = new ArrayList<>();
+        }
+        this.groups.add(group);
+    }
+
+    public boolean ownGroup(Long id){
+        for (Group g : this.groups) {
+           if(g.getGroupId().equals(id)) {
+               return true;
+           }
+        }
+        return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -68,4 +133,12 @@ public class User {
         this.authType = authType;
     }
 
+    public void deleteGroupById(Long groupId) {
+        for (Group g : this.groups) {
+            if (g.getGroupId().equals(groupId)) {
+                this.groups.remove(g);
+                break;
+            }
+        }
+    }
 }

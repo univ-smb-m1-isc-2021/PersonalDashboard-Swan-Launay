@@ -1,0 +1,31 @@
+.test{
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+
+.background_container{
+    background-image: url("./../../../resources/public/assets/login-back.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    filter: blur(15px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    scale: 1.07;
+}
+
+#dashboard_container{
+    position: relative;
+    flex: 1;
+    padding-right: 5%;
+    padding-left: 5%;
+}

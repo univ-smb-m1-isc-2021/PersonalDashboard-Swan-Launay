@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class CustomErrorController implements ErrorController {
-
+    /*
     @RequestMapping("/error")
     public ModelAndView handleError(HttpServletRequest request, ModelAndView modelAndView) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
@@ -38,4 +38,6 @@ public class CustomErrorController implements ErrorController {
         }
         return modelAndView;
     }
+
+     */
 }

@@ -30,11 +30,18 @@ public class CustomOAuth2User implements OAuth2User {
 
     @Override
     public String getName() {
+        System.out.println("xcq02" + oauth2User);
         if(oauth2ClientName.equalsIgnoreCase("Github")) {
             return oauth2User.getAttribute("login");
         } else {
             return oauth2User.getAttribute("email");
         }
+    }
+
+    public String getFullName(){
+        System.out.println("xcq01" + oauth2User);
+        //NEED TO BE TESTED
+        return oauth2User.getAttribute("name");
     }
 
     public AuthenticationType getOauth2ClientName() {
