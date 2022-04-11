@@ -42,37 +42,5 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"name\":\"name\"}"));
     }
-    /*
-    @Test
-    public void testAddGroup() throws Exception {
-        when(groupService.saveGroup("group1"))
-                .thenReturn(
-                        new Group("group1", new User())
-                );
-
-        mockMvc.perform(get("/api/add-group/group1"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("{\"groupId\":null,\"name\":\"group1\",\"shortcuts\":[],\"userId\":null}"));
-    }
-
-    @Test
-    public void testUpdateGroup() throws Exception {
-        when(groupService.updateGroup(1L, "group1"))
-                .thenReturn(
-                        new Group("group1", new User())
-                );
-
-        mockMvc.perform(get("/api/update-group/1/group1"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("{\"groupId\":null,\"name\":\"group1\",\"shortcuts\":[],\"userId\":null}"));
-    }
-
-    @Test
-    public void testDeleteGroup() throws Exception {
-        mockMvc.perform(get("/api/delete-group/1"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("true"));
-    }
-    */
 
 }

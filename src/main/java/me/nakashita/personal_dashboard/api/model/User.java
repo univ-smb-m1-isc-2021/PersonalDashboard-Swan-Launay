@@ -93,6 +93,15 @@ public class User {
         return false;
     }
 
+    public boolean ownShortcut(Long id){
+        for (Group g : this.groups) {
+           if(g.ownShortcut(id)) {
+               return true;
+           }
+        }
+        return false;
+    }
+
     public String getName() {
         return name;
     }

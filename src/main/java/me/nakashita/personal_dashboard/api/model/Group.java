@@ -114,4 +114,13 @@ public class Group {
     public void setShortcuts(List<Shortcut> shortcuts) {
         this.shortcuts = shortcuts;
     }
+
+    public boolean ownShortcut(Long id) {
+        for (Shortcut s : shortcuts) {
+            if (s.getShortcutId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

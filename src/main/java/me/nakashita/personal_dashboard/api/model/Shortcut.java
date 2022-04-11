@@ -26,7 +26,7 @@ public class Shortcut {
     private String keyboardShortcut;
 
     public Shortcut() {
-        //Used for JPA.user =
+        //Used for JPA.user
         this.name = name;
     }
 

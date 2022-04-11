@@ -36,6 +36,15 @@ public class ShortcutService{
         return shortcuts;
     }
 
+    public Shortcut findById(Long id){
+        Optional<Shortcut> shortcutOptional = shortcutRepository.findById(id);
+        if(shortcutOptional.isPresent()){
+            return shortcutOptional.get();
+        } else {
+            return null;
+        }
+    }
+
     public Shortcut saveShortcut(Shortcut shortcut, Long groupId) {
         Optional<Group> groupOptional = groupService.getGroup(groupId);
         if (groupOptional.isPresent()) {
@@ -58,5 +67,29 @@ public class ShortcutService{
         if(shortcut != null){
             shortcutRepository.delete(shortcut);
         }
+    }
+
+    public boolean removeById(Long id) {
+        if(userService.currentUserOwnShortcut(id)){
+            Shortcut shortcut = findById(id);
+            if(shortcut != null){
+                delete(shortcut);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Shortcut updateShortcut(Long id, String name, String url, String headerUrl, String desc, String key) {
+        Shortcut shortcut = findById(id);
+        if(shortcut != null){
+            shortcut.setName(name);
+            shortcut.setUrl(url);
+            shortcut.setHeaderUrl(headerUrl);
+            shortcut.setDescription(desc);
+            shortcut.setKeyboardShortcut(key);
+            return shortcutRepository.save(shortcut);
+        }
+        return null;
     }
 }

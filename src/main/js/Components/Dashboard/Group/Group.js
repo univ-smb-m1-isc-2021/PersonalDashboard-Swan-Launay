@@ -30,6 +30,7 @@ function Group(props){
                                  shortcutKey={shortcut.keyboardShortcut}
                                  shortcutDesc={shortcut.description}
                                  showEdit={showEditShortcutButton}
+                                 reloadGroups={props.reloadGroups}
 
         />);
     }

@@ -52,6 +52,10 @@ public class UserService {
         return getCurrentUser().ownGroup(groupId);
     }
 
+    public boolean currentUserOwnShortcut(Long shortcutId){
+        return getCurrentUser().ownShortcut(shortcutId);
+    }
+
     public void deleteGroupById(Long groupId) {
         User user = getCurrentUser();
         user.deleteGroupById(groupId);

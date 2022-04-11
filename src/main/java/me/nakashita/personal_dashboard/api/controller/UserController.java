@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.Collections;
@@ -34,8 +35,6 @@ public class UserController extends ResponseEntityExceptionHandler {
     @Autowired
     private UserService userService;
 
-    private Principal principal;
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -43,14 +42,8 @@ public class UserController extends ResponseEntityExceptionHandler {
 
     @PostMapping("/register")
     public RedirectView register(@RequestParam(name = "email") String email,
-                           @RequestParam(name = "pass") String password,
-                           @RequestParam(name = "name") String displayname){
-                           /*
-                           RedirectAttributes redirectAttributes) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        header
-        */
+                                 @RequestParam(name = "pass") String password,
+                                 @RequestParam(name = "name") String displayname, HttpServletRequest request){
 
         if(!userService.isExist(email)) {
             userService.saveUser(
@@ -58,26 +51,18 @@ public class UserController extends ResponseEntityExceptionHandler {
                     new BCryptPasswordEncoder().encode(password),
                     displayname
             );
-            /*
-            redirectAttributes.addAttribute("email", email);
-            redirectAttributes.addAttribute("pass", password);
-            return new RedirectView("/login");
-
-             */
         }
-        //redirectAttributes.addAttribute("error", true);
-        return new RedirectView("/login");
+        try{
+            request.login(email, password);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return new RedirectView("/");
     }
 
     @GetMapping("/api/get-name")
     public Map<String, String> getName() {
         User user = userService.getCurrentUser();
         return Collections.singletonMap("name", user.getName());
-    }
-
-
-    @ExceptionHandler(UsernameAlreadyTakenException.class)
-    public ResponseEntity<Object> handleUsernameAlreadyTaken() {
-        return new ResponseEntity<>("Username already taken", HttpStatus.CONFLICT);
     }
 }
