@@ -17,6 +17,10 @@ public class UserService {
     @Autowired
     private UserRepository repo;
 
+    public UserService(UserRepository userRepository) {
+        this.repo = userRepository;
+    }
+
     public void updateAuthenticationType(String username, String oauth2ClientName) {
         AuthenticationType authType = AuthenticationType.valueOf(oauth2ClientName.toUpperCase());
         repo.updateAuthenticationType(username, authType);
@@ -28,11 +32,12 @@ public class UserService {
     }
 
     public User saveUser(String username, String password, String name, AuthenticationType authType) {
-        return repo.save(new User(username, password, name));
+        return saveUser(username, password, name);
     }
 
     public User saveUser(String username, String password, String name) {
-        return repo.save(new User(username, password, name));
+        User user = new User(username, password, name);
+        return repo.save(user);
     }
 
     public User saveUser(User user) {

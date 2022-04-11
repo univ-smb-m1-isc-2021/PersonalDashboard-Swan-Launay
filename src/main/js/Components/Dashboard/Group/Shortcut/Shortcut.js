@@ -40,7 +40,10 @@ function Shortcut(props){
             <div className='shortcut_letter'>{props.shortcutKey}</div>
         </div>
         <div className='card-body'>
-            <p className='card-text'>{props.shortcutDesc}</p>
+            <p className='card-text'>
+                {props.shortcutName}
+                <div className='small'>{props.shortcutDesc}</div>
+            </p>
         </div>
         <button onClick={openUrl} className="shortcut_button">Access &#10140; </button>
         <EditShortcutModal show={showEditModal}

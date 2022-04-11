@@ -46,6 +46,7 @@ public class Group {
         this.shortcuts = shortcuts;
     }
 
+
     public Map<String, Object> toJSON(){
         Map<String, Object> res = new HashMap<>();
         res.put("groupId", this.getGroupId());
@@ -62,6 +63,9 @@ public class Group {
     }
 
     public void addShortcut(Shortcut shortcut) {
+        if (shortcuts == null) {
+            shortcuts = new ArrayList<>();
+        }
         shortcuts.add(shortcut);
     }
 

@@ -10,7 +10,7 @@ function EditGroupModal(props){
         setNewGroupName('');
     };
 
-    const [newGroupName, setNewGroupName] = React.useState('');
+    const [newGroupName, setNewGroupName] = React.useState(props.groupName);
 
     const handleChangeNewGroupName = (event) => {
         setNewGroupName(event.target.value);
@@ -39,7 +39,7 @@ function EditGroupModal(props){
 
     return <Modal centered show={props.show} className='' onHide={handleCloseEditGroupModal}>
         <Modal.Header closeButton>
-            <Modal.Title>Edit the group <b>{props.groupName}</b></Modal.Title>
+            <Modal.Title>Edit the group <b>{newGroupName}</b></Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <div className="mb-2">
@@ -50,7 +50,7 @@ function EditGroupModal(props){
                 </div>
             </div>
         </Modal.Body>
-        <button type="button"  className="submit-button" onClick={handleSubmitUpdateGroup}>Save {props.groupName}</button>
+        <button type="button"  className="submit-button" onClick={handleSubmitUpdateGroup}>Save {newGroupName}</button>
     </Modal>;
 }
 

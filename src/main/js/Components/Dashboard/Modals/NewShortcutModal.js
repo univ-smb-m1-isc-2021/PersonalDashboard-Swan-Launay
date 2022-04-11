@@ -53,7 +53,7 @@ function NewShortcutModal(props){
         <Modal.Body>
             <form className="mb-2">
                 <input type='text' placeholder="Shortcut name" onChange={handleName} value={name} className='form-control my-1'/>
-                <input type='text' placeholder="A quick description" onChange={handleDesc}  value={description}  className='form-control my-1'/>
+                <input type='text' placeholder="A quick description (optional)" onChange={handleDesc}  value={description}  className='form-control my-1'/>
                 <input type='url' placeholder="Image URL" onChange={handleIcon}  value={icon}  className='form-control my-1'/>
                 <input type='url' placeholder="Targeted website URL" onChange={handleUrl}  value={url}  className='form-control my-1'/>
                 <button type='button' className='keymap my-2'  onClick={listenKey}>{keyMap}</button>
