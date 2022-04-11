@@ -1,7 +1,6 @@
 package me.nakashita.personal_dashboard.security.oauth;
 
 import me.nakashita.personal_dashboard.security.AuthenticationType;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
@@ -10,8 +9,8 @@ import java.util.Locale;
 import java.util.Map;
 
 public class CustomOAuth2User implements OAuth2User {
-    private String oauth2ClientName;
-    private OAuth2User oauth2User;
+    private final String oauth2ClientName;
+    private final OAuth2User oauth2User;
 
     public CustomOAuth2User(OAuth2User oauth2User, String oauth2ClientName) {
         this.oauth2User = oauth2User;
@@ -30,15 +29,15 @@ public class CustomOAuth2User implements OAuth2User {
 
     @Override
     public String getName() {
-        if(oauth2ClientName.equalsIgnoreCase("GITHUB")) {
+        if (oauth2ClientName.equalsIgnoreCase("GITHUB")) {
             return oauth2User.getAttribute("login");
         } else {
             return oauth2User.getAttribute("email");
         }
     }
 
-    public String getFullName(){
-        if(oauth2ClientName.equalsIgnoreCase("GITHUB")) {
+    public String getFullName() {
+        if (oauth2ClientName.equalsIgnoreCase("GITHUB")) {
             return oauth2User.getAttribute("login");
         } else {
             return oauth2User.getAttribute("name");

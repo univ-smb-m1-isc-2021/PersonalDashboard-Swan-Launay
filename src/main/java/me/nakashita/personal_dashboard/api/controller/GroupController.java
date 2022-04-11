@@ -2,16 +2,13 @@ package me.nakashita.personal_dashboard.api.controller;
 
 import me.nakashita.personal_dashboard.api.model.Group;
 import me.nakashita.personal_dashboard.api.service.GroupService;
-import me.nakashita.personal_dashboard.api.service.ShortcutService;
 import me.nakashita.personal_dashboard.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

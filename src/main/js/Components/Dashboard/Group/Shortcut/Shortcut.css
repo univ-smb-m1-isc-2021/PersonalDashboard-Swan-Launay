@@ -1,4 +1,4 @@
-.shortcut_container{
+.shortcut_container {
     width: 13rem;
     margin-right: 15px;
     display: inline-flex !important;
@@ -6,27 +6,27 @@
     background-color: #e3e3e3 !important;
 }
 
-.shortcut_container:last-child{
+.shortcut_container:last-child {
     margin-right: 0;
 }
 
-.shortcut_remove_container{
+.shortcut_remove_container {
     position: relative;
 }
 
-.shortcut_remove_button{
+.shortcut_remove_button {
     background-image: url('/assets/delete.png');
     right: 0;
 }
 
-.shortcut_edit_button{
+.shortcut_edit_button {
     background-image: url('/assets/edit.png');
     right: 30px;
     border-bottom-left-radius: 15px;
 
 }
 
-.shortcut_action{
+.shortcut_action {
     position: absolute;
     width: 30px;
     height: 30px;
@@ -35,38 +35,36 @@
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.5;
-    background-color: rgba(0,0,0);
+    background-color: rgba(0, 0, 0);
     border: none;
 }
 
-.shortcut_action:hover{
+.shortcut_action:hover {
     opacity: 1;
 }
 
 
-.shortcut_letter_container{
+.shortcut_letter_container {
     position: relative;
 }
 
-.shortcut_letter{
+.shortcut_letter {
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     border-radius: 10px;
-    background-color: rgb(75,75,75);
+    background-color: rgb(75, 75, 75);
     color: white;
     text-transform: uppercase;
-    padding: .50rem 0.7rem;
+    padding: .50rem 0.8rem;
     transform: translateY(-100%);
-    top : 0.7rem;
+    top: 0.7rem;
     left: 0.5rem;
-    border-bottom: 3px solid rgb(50,50,50);
-    border-left: 3px solid rgb(50,50,50);
-
+    font-size: 1.2rem;
 }
 
-.shortcut_img{
+.shortcut_img {
     object-fit: cover;
     height: 125px;
     background-image: url('/assets/placeholder.png');
@@ -74,7 +72,7 @@
     background-position: center;
 }
 
-.shortcut_button{
+.shortcut_button {
     width: 100%;
     padding: 10px;
     border: none;
@@ -88,7 +86,7 @@
     color: white;
 }
 
-.shortcut_button:hover{
+.shortcut_button:hover {
     background-color: #24282c;
 }
 

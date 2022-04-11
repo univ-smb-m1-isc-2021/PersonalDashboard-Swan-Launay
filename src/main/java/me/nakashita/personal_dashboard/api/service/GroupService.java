@@ -8,22 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class GroupService {
 
+    @Lazy
+    @Autowired
+    ShortcutService shortcutService;
     @Autowired
     private GroupRepository groupRepository;
-
     @Autowired
     private UserService userService;
-
-    @Lazy
-    @Autowired ShortcutService shortcutService;
 
     public List<Group> getGroupList() {
         User user = userService.getCurrentUser();
@@ -31,26 +28,26 @@ public class GroupService {
     }
 
     public Optional<Group> getGroup(Long id) {
-        if(userService.currentUserOwnGroup(id)) {
+        if (userService.currentUserOwnGroup(id)) {
             return groupRepository.findById(id);
         } else {
             return Optional.empty();
         }
     }
 
-    public Group saveGroup(Group group){
+    public Group saveGroup(Group group) {
         group.setUser(userService.getCurrentUser());
         userService.getCurrentUser().addGroup(group);
         return groupRepository.save(group);
     }
 
-    public Group saveGroup(String name){
+    public Group saveGroup(String name) {
         Group group = new Group(name);
         return saveGroup(group);
     }
 
     public Group updateGroup(Long groupId, String groupName) {
-        if(userService.currentUserOwnGroup(groupId)) {
+        if (userService.currentUserOwnGroup(groupId)) {
             Optional<Group> group = groupRepository.findById(groupId);
             if (group.isPresent()) {
                 group.get().setName(groupName);
@@ -61,7 +58,7 @@ public class GroupService {
     }
 
     public void deleteGroup(Long groupId) {
-        if(userService.currentUserOwnGroup(groupId)) {
+        if (userService.currentUserOwnGroup(groupId)) {
             Optional<Group> groupOp = groupRepository.findById(groupId);
             if (groupOp.isPresent()) {
                 Group group = groupOp.get();

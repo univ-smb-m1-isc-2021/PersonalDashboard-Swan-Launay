@@ -1,4 +1,4 @@
-.test{
+.test {
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -9,7 +9,7 @@
 }
 
 
-.background_container{
+.background_container {
     background-image: url("./../../../resources/public/assets/login-back.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -23,7 +23,7 @@
     scale: 1.07;
 }
 
-#dashboard_container{
+#dashboard_container {
     position: relative;
     flex: 1;
     padding-right: 5%;

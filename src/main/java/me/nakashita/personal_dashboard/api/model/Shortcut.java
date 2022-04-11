@@ -1,8 +1,6 @@
 package me.nakashita.personal_dashboard.api.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,6 +22,8 @@ public class Shortcut {
     private String headerUrl;
     private String description;
     private String keyboardShortcut;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Group group;
 
     public Shortcut() {
         //Used for JPA.user
@@ -38,10 +38,7 @@ public class Shortcut {
         this.keyboardShortcut = keyboardShortcut;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Group group;
-
-    public Map<String, Object> toJSON(){
+    public Map<String, Object> toJSON() {
         Map<String, Object> res = new HashMap<>();
         res.put("shortcutId", this.shortcutId);
         res.put("userId", this.group.getUser().getId());
@@ -122,7 +119,6 @@ public class Shortcut {
     public void setKeyboardShortcut(String keyboardShortcut) {
         this.keyboardShortcut = keyboardShortcut;
     }
-
 
 
 }

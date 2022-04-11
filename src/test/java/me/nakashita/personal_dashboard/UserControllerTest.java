@@ -1,17 +1,11 @@
 package me.nakashita.personal_dashboard;
 
-import me.nakashita.personal_dashboard.api.controller.GroupController;
 import me.nakashita.personal_dashboard.api.controller.UserController;
-import me.nakashita.personal_dashboard.api.model.Group;
 import me.nakashita.personal_dashboard.api.model.User;
-import me.nakashita.personal_dashboard.api.service.GroupService;
 import me.nakashita.personal_dashboard.api.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-
-import java.util.List;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -33,14 +27,9 @@ public class UserControllerTest {
 
     @Test
     public void testGetName() throws Exception {
-        when(userService.getCurrentUser())
-                .thenReturn(
-                        new User("username", "password", "name")
-                );
+        when(userService.getCurrentUser()).thenReturn(new User("username", "password", "name"));
 
-        mockMvc.perform(get("/api/get-name"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("{\"name\":\"name\"}"));
+        mockMvc.perform(get("/api/get-name")).andExpect(status().isOk()).andExpect(content().string("{\"name\":\"name\"}"));
     }
 
 }

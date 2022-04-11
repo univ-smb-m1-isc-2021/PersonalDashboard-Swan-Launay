@@ -1,24 +1,16 @@
 package me.nakashita.personal_dashboard;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import me.nakashita.personal_dashboard.api.controller.ShortcutController;
-import me.nakashita.personal_dashboard.api.controller.UserController;
-import me.nakashita.personal_dashboard.api.model.Shortcut;
-import me.nakashita.personal_dashboard.api.model.User;
 import me.nakashita.personal_dashboard.api.service.ShortcutService;
-import me.nakashita.personal_dashboard.api.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -64,16 +56,13 @@ public class ShortcutControllerTest {
     @Test
     public void testRemoveShortcut() throws Exception {
 
-        when(shortcutService.removeById(1L))
-                .thenReturn(true);
+        when(shortcutService.removeById(1L)).thenReturn(true);
 
         HashMap<String, String> params = new HashMap<>();
         params.put("id", "1");
 
-        mockMvc.perform(get("/api/remove-shortcut/1"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("true"));
+        mockMvc.perform(get("/api/remove-shortcut/1")).andExpect(status().isOk()).andExpect(content().string("true"));
     }
 
-   
+
 }

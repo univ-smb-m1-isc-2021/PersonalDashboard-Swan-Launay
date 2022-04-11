@@ -9,7 +9,7 @@ import Footer from "./Components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './spinner.css';
-
+import './common.css';
 
 
 function Loader() {
@@ -35,10 +35,10 @@ function Loader() {
 
 ReactDOM.render(
     <div className='d-flex flex-column h-100 w-100' id='main_container'>
-        <Navbar />
-        <Dashboard />
-        <Footer />
-        <Loader />
+        <Navbar/>
+        <Dashboard/>
+        <Footer/>
+        <Loader/>
     </div>,
     document.getElementById("root")
 );

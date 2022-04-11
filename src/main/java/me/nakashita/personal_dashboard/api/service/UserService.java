@@ -1,7 +1,5 @@
 package me.nakashita.personal_dashboard.api.service;
 
-import javax.transaction.Transactional;
-
 import me.nakashita.personal_dashboard.api.model.User;
 import me.nakashita.personal_dashboard.api.repository.UserRepository;
 import me.nakashita.personal_dashboard.security.AuthenticationType;
@@ -9,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 
 @Service
@@ -48,16 +47,16 @@ public class UserService {
         return repo.getUserByUsername(username);
     }
 
-    public User getCurrentUser(){
+    public User getCurrentUser() {
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
         return repo.getUserByUsername(principal.getName());
     }
 
-    public boolean currentUserOwnGroup(Long groupId){
+    public boolean currentUserOwnGroup(Long groupId) {
         return getCurrentUser().ownGroup(groupId);
     }
 
-    public boolean currentUserOwnShortcut(Long shortcutId){
+    public boolean currentUserOwnShortcut(Long shortcutId) {
         return getCurrentUser().ownShortcut(shortcutId);
     }
 

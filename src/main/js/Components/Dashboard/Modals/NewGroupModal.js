@@ -2,7 +2,7 @@ import {Modal} from "react-bootstrap";
 import React, {useState} from "react";
 import {addGroup} from "../../../Services/GroupService";
 
-function NewGroupModal(props){
+function NewGroupModal(props) {
 
     const [groupName, setGroupName] = useState('');
 
@@ -29,7 +29,8 @@ function NewGroupModal(props){
         </Modal.Header>
         <Modal.Body>
             <div className='mb-2'>
-              <input type='text' placeholder="Group name" className='form-control' onChange={handleGroupNameChange} value={groupName}/>
+                <input type='text' placeholder="Group name" className='form-control' onChange={handleGroupNameChange}
+                       value={groupName}/>
             </div>
         </Modal.Body>
         <button className="submit-button" onClick={handleSubmit}>Add to dashboard</button>

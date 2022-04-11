@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import me.nakashita.personal_dashboard.security.AuthenticationType;
 
-import java.util.*;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "users")
@@ -31,7 +33,8 @@ public class User {
     @Column(name = "auth_type")
     private AuthenticationType authType;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String username, String password, String name, AuthenticationType authType) {
         this.username = username;
@@ -44,14 +47,14 @@ public class User {
         this(username, password, name, AuthenticationType.DATABASE);
     }
 
-    public Map<String, Object> toJSON(){
+    public Map<String, Object> toJSON() {
         Map<String, Object> res = new HashMap<>();
         res.put("userId", this.id);
         res.put("name", this.name);
         res.put("username", this.username);
         res.put("authType", this.authType);
         ArrayList<Map<String, Object>> groupsLIST = new ArrayList<>();
-        for(Group g : this.groups){
+        for (Group g : this.groups) {
             groupsLIST.add(g.toJSON());
         }
         res.put("groups", groupsLIST);
@@ -77,27 +80,27 @@ public class User {
         this.groups = groups;
     }
 
-    public void addGroup(Group group){
-        if(this.groups == null){
+    public void addGroup(Group group) {
+        if (this.groups == null) {
             this.groups = new ArrayList<>();
         }
         this.groups.add(group);
     }
 
-    public boolean ownGroup(Long id){
+    public boolean ownGroup(Long id) {
         for (Group g : this.groups) {
-           if(g.getGroupId().equals(id)) {
-               return true;
-           }
+            if (g.getGroupId().equals(id)) {
+                return true;
+            }
         }
         return false;
     }
 
-    public boolean ownShortcut(Long id){
+    public boolean ownShortcut(Long id) {
         for (Group g : this.groups) {
-           if(g.ownShortcut(id)) {
-               return true;
-           }
+            if (g.ownShortcut(id)) {
+                return true;
+            }
         }
         return false;
     }

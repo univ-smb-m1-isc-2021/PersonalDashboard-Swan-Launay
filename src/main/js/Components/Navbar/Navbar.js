@@ -3,14 +3,10 @@ import "core-js";
 import "regenerator-runtime/runtime";
 
 
-import './Navbar.css';
 import './../../common.css';
-import Settings from "./Settings/Settings";
-import {Modal} from "react-bootstrap";
 import {getName} from "../../Services/UserService";
-import NewGroupModal from "../Dashboard/Modals/NewGroupModal";
 
-function Navbar(){
+function Navbar() {
 
     const [name, setName] = useState("there");
 

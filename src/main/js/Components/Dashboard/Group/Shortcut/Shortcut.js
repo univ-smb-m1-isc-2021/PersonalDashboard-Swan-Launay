@@ -4,11 +4,11 @@ import EditShortcutModal from "../../Modals/EditShortcutModal";
 import {removeShortcut} from "../../../../Services/ShortcutService";
 
 
-function Shortcut(props){
+function Shortcut(props) {
 
     const [showEditModal, setShowEditModal] = React.useState(false);
 
-    function openUrl(){
+    function openUrl() {
         window.open(props.shortcutUrl, '_blank');
     }
 
@@ -23,10 +23,10 @@ function Shortcut(props){
     }
 
     function EditShortcut(props) {
-        if(props.show){
+        if (props.show) {
             return <div className='shortcut_remove_container'>
-                <button className='shortcut_edit_button shortcut_action' onClick={handleEditShortcut} />
-                <button className='shortcut_remove_button shortcut_action' onClick={handleRemoveShortcut} />
+                <button className='shortcut_edit_button shortcut_action' onClick={handleEditShortcut}/>
+                <button className='shortcut_remove_button shortcut_action' onClick={handleRemoveShortcut}/>
             </div>;
         } else {
             return <div></div>;

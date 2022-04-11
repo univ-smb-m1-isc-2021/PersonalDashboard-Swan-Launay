@@ -1,4 +1,3 @@
-
 package me.nakashita.personal_dashboard.api.service;
 
 import lombok.Data;
@@ -14,7 +13,7 @@ import java.util.Optional;
 
 @Data
 @Service
-public class ShortcutService{
+public class ShortcutService {
     @Autowired
     private ShortcutRepository shortcutRepository;
 
@@ -23,11 +22,11 @@ public class ShortcutService{
     @Autowired
     private GroupService groupService;
 
-    public void save(Shortcut shortcut){
+    public void save(Shortcut shortcut) {
         shortcutRepository.save(shortcut);
     }
 
-    public Iterable<Shortcut> findAll(){
+    public Iterable<Shortcut> findAll() {
         List<Group> groups = userService.getCurrentUser().getGroups();
         ArrayList<Shortcut> shortcuts = new ArrayList<>();
         for (Group group : groups) {
@@ -36,9 +35,9 @@ public class ShortcutService{
         return shortcuts;
     }
 
-    public Shortcut findById(Long id){
+    public Shortcut findById(Long id) {
         Optional<Shortcut> shortcutOptional = shortcutRepository.findById(id);
-        if(shortcutOptional.isPresent()){
+        if (shortcutOptional.isPresent()) {
             return shortcutOptional.get();
         } else {
             return null;
@@ -64,15 +63,15 @@ public class ShortcutService{
     }
 
     public void delete(Shortcut shortcut) {
-        if(shortcut != null){
+        if (shortcut != null) {
             shortcutRepository.delete(shortcut);
         }
     }
 
     public boolean removeById(Long id) {
-        if(userService.currentUserOwnShortcut(id)){
+        if (userService.currentUserOwnShortcut(id)) {
             Shortcut shortcut = findById(id);
-            if(shortcut != null){
+            if (shortcut != null) {
                 delete(shortcut);
                 return true;
             }
@@ -82,7 +81,7 @@ public class ShortcutService{
 
     public Shortcut updateShortcut(Long id, String name, String url, String headerUrl, String desc, String key) {
         Shortcut shortcut = findById(id);
-        if(shortcut != null){
+        if (shortcut != null) {
             shortcut.setName(name);
             shortcut.setUrl(url);
             shortcut.setHeaderUrl(headerUrl);

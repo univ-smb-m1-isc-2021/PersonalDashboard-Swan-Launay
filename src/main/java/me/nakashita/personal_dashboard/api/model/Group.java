@@ -47,13 +47,13 @@ public class Group {
     }
 
 
-    public Map<String, Object> toJSON(){
+    public Map<String, Object> toJSON() {
         Map<String, Object> res = new HashMap<>();
         res.put("groupId", this.getGroupId());
         res.put("userId", this.user.getId());
         res.put("name", this.name);
         ArrayList<Map<String, Object>> shortcutsLIST = new ArrayList<>();
-        if(this.shortcuts != null) {
+        if (this.shortcuts != null) {
             for (Shortcut s : this.shortcuts) {
                 shortcutsLIST.add(s.toJSON());
             }
@@ -72,20 +72,6 @@ public class Group {
     public void removeShortcut(Shortcut shortcut) {
         shortcuts.remove(shortcut);
     }
-
-
-
-
-
-
-
-
-
-
-/* =======================================
-        SETTERS AND GETTERS
- ======================================= */
-
 
     public Long getGroupId() {
         return groupId;

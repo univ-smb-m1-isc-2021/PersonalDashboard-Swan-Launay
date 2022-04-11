@@ -18,7 +18,8 @@ public class DatabaseLoginSuccessHandler extends SavedRequestAwareAuthentication
     UserService userService;
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+    public void onAuthenticationSuccess(HttpServletRequest request,
+                                        HttpServletResponse response,
                                         Authentication authentication) throws ServletException, IOException {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         userService.updateAuthenticationType(userDetails.getUsername(), "database");

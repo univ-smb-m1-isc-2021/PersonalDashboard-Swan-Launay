@@ -3,7 +3,7 @@ import React from "react";
 import {deleteGroup, updateGroup} from "../../../Services/GroupService";
 import './EditGroupModal.css';
 
-function EditGroupModal(props){
+function EditGroupModal(props) {
 
     const handleCloseEditGroupModal = () => {
         props.setShow(false);
@@ -43,14 +43,16 @@ function EditGroupModal(props){
         </Modal.Header>
         <Modal.Body>
             <div className="mb-2">
-                <input type='text' placeholder="New group name" className='form-control' onChange={handleChangeNewGroupName} value={newGroupName}/>
+                <input type='text' placeholder="New group name" className='form-control'
+                       onChange={handleChangeNewGroupName} value={newGroupName}/>
                 <div className="mt-2 danger-zone">
                     Danger zone
-                    <button type="button" className='btn btn-danger mt-2' onClick={handleRemoveGroup}>Delete group</button>
+                    <button type="button" className='btn btn-danger mt-2' onClick={handleRemoveGroup}>Delete
+                        group</button>
                 </div>
             </div>
         </Modal.Body>
-        <button type="button"  className="submit-button" onClick={handleSubmitUpdateGroup}>Save {newGroupName}</button>
+        <button type="button" className="submit-button" onClick={handleSubmitUpdateGroup}>Save {newGroupName}</button>
     </Modal>;
 }
 

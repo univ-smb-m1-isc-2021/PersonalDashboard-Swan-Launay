@@ -17,6 +17,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private CustomOAuth2UserService oauth2UserService;
+    @Autowired
+    private OAuthLoginSuccessHandler oauthLoginSuccessHandler;
+    @Autowired
+    private DatabaseLoginSuccessHandler databaseLoginSuccessHandler;
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl();
@@ -62,17 +69,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(oauthLoginSuccessHandler)
                 .and()
                 .logout().logoutSuccessUrl("/login?logout").permitAll()
-                .and()
-                .exceptionHandling().accessDeniedPage("/403")
         ;
     }
-
-    @Autowired
-    private CustomOAuth2UserService oauth2UserService;
-
-    @Autowired
-    private OAuthLoginSuccessHandler oauthLoginSuccessHandler;
-
-    @Autowired
-    private DatabaseLoginSuccessHandler databaseLoginSuccessHandler;
 }

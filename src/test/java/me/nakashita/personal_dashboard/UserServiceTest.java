@@ -1,25 +1,15 @@
 package me.nakashita.personal_dashboard;
 
-import me.nakashita.personal_dashboard.api.model.Group;
 import me.nakashita.personal_dashboard.api.model.User;
 import me.nakashita.personal_dashboard.api.repository.UserRepository;
 import me.nakashita.personal_dashboard.api.service.UserService;
-import me.nakashita.personal_dashboard.security.AuthenticationType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.security.Principal;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 public class UserServiceTest {
 
@@ -35,8 +25,7 @@ public class UserServiceTest {
 
     @Test
     public void testIsExist() {
-        when(userRepository.getUserByUsername("name"))
-                .thenReturn(new User());
+        when(userRepository.getUserByUsername("name")).thenReturn(new User());
 
         assertTrue(userService.isExist("name"));
     }
@@ -45,16 +34,14 @@ public class UserServiceTest {
     public void testSaveUser() {
         User user = new User();
 
-        when(userRepository.save(user))
-                .thenReturn(user);
+        when(userRepository.save(user)).thenReturn(user);
 
         assertTrue(userService.saveUser(user) != null);
     }
 
     @Test
     public void testGetByUsername() {
-        when(userRepository.getUserByUsername("name"))
-                .thenReturn(new User());
+        when(userRepository.getUserByUsername("name")).thenReturn(new User());
 
         assertTrue(userService.getUserByUsername("name") != null);
     }

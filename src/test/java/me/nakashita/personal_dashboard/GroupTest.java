@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class GroupTest {
 
     @Test
-    public void testAddShortcut(){
+    public void testAddShortcut() {
         Group group = new Group();
         Shortcut shortcut = new Shortcut();
         group.addShortcut(shortcut);
@@ -15,7 +15,7 @@ public class GroupTest {
     }
 
     @Test
-    public void removeShortcut(){
+    public void removeShortcut() {
         Group group = new Group();
         Shortcut shortcut = new Shortcut();
         group.addShortcut(shortcut);

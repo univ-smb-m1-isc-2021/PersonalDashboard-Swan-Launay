@@ -27,19 +27,18 @@ public class OAuthLoginSuccessHandler extends SavedRequestAwareAuthenticationSuc
 
         User user = userService.getUserByUsername(oAuth2User.getName());
 
-        if(user == null) {
+        if (user == null) {
             userService.saveUser(
                     oAuth2User.getName(),
                     null,
                     oAuth2User.getFullName(),
                     oAuth2User.getOauth2ClientName()
-                    );
+            );
         } else {
             user.setUsername(oAuth2User.getName());
             user.setName(oAuth2User.getFullName());
             userService.saveUser(user);
         }
-
 
 
         super.onAuthenticationSuccess(request, response, authentication);

@@ -24,7 +24,7 @@ public class UserTest {
     }
 
     @Test
-    public void testOwnGroup(){
+    public void testOwnGroup() {
         Group group = new Group("GroupName");
         group.setGroupId(123L);
         User user = new User("username", "pass", "name", AuthenticationType.DATABASE);
@@ -34,7 +34,7 @@ public class UserTest {
     }
 
     @Test
-    public void testDeleteGroupById(){
+    public void testDeleteGroupById() {
         Group group = new Group("GroupName");
         group.setGroupId(123L);
         User user = new User("username", "pass", "name", AuthenticationType.DATABASE);
